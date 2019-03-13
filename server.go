@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"regexp"
 	"time"
 
+	"github.com/gorilla/mux"
 	"github.com/lestrrat-go/ical"
 )
 
@@ -27,16 +26,16 @@ func getCalendarFile(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	r := mux.NewRouter()
+	r.HandleFunc("/", getCalendarFile)
+
 	var port string
+
 	if os.Getenv("PORT") != "" {
 		port = os.Getenv("PORT")
 	} else {
-		port = "9000"
+		port = "8080"
 	}
 
-	handler := &RegexpHandler{}
-
-	handler.HandleFunc(regexp.MustCompile("^/"), getCalendarFile)
-	fmt.Printf("Server is running on port %v\n", port)
-	http.ListenAndServe(":"+port, handler)
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }

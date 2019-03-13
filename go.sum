@@ -6,6 +6,8 @@ github.com/codegangsta/gin v0.0.0-20171026143024-cafe2ce98974 h1:ysuVNDVE4LIky6I
 github.com/codegangsta/gin v0.0.0-20171026143024-cafe2ce98974/go.mod h1:UBYuwaH3dMw91EZ7tGVaFF6GDj5j46S7zqB9lZPIe58=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/gorilla/mux v1.7.0 h1:tOSd0UKHQd6urX6ApfOn4XdBMY6Sh1MfxV3kmaazO+U=
+github.com/gorilla/mux v1.7.0/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2zaAs=
 github.com/lestrrat-go/bufferpool v0.0.0-20180220091733-e7784e1b3e37 h1:px5km9KhQGUKiPWIVZ++FErEMTd06XEuMi2OswGMrqI=
 github.com/lestrrat-go/bufferpool v0.0.0-20180220091733-e7784e1b3e37/go.mod h1:vs3QXw2t0jsgjLEG7JZt0uE1jcSkxnQr+5bhQ80UJHE=
 github.com/lestrrat-go/ical v0.0.0-20180221004145-fbfb9a8b4a93 h1:cJZNO/6y+bzR47osEM0gfw4NAyx8aROPby8Ou0/se/s=
