@@ -10,3 +10,13 @@ services:
       - "80:80"
     depends_on:
       - "goservice"
+    volumes:
+      - ${WEB_APP_PATH}:${WEB_DESTINATION_PATH}
+
+volumes:
+  web_app:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/${WEB_APP_PATH}
+      o: bind

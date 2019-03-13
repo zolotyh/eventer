@@ -9,7 +9,7 @@ ENV GO111MODULE=on
 ENV PORT=8080
 RUN GOOS=linux go build -ldflags="-s -w" -o ./bin/test ./*.go
 #Step 2 Final
-FROM alpine:3.8
+FROM alpine:3.9
 RUN apk --no-cache add ca-certificates
 WORKDIR /usr/bin
 COPY --from=build /go/src/app/bin /go/bin
