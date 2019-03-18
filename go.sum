@@ -1,5 +1,7 @@
 github.com/0xAX/notificator v0.0.0-20181105090803-d81462e38c21 h1:moSC7ACaTejHmVRRwfDTMgByRSwjg2vZooncdWLj7o8=
 github.com/0xAX/notificator v0.0.0-20181105090803-d81462e38c21/go.mod h1:NtXa9WwQsukMHZpjNakTTz0LArxvGYdPA9CjIcUSZ6s=
+github.com/PuloV/ics-golang v0.0.0-20171204202606-16348f88d40b h1:4LZXdoAkih99NdIXUqcb7rUXZwjftLCdvXuHBMVVRyY=
+github.com/PuloV/ics-golang v0.0.0-20171204202606-16348f88d40b/go.mod h1:f1P3hjG+t54/IrnXMnnw+gRmFCDR/ryj9xSQ7MPMkQw=
 github.com/codegangsta/envy v0.0.0-20141216192214-4b78388c8ce4 h1:ihrIKrLQzm6Q6NJHBMemvaIGTFxgxQUEkn2AjN0Aulw=
 github.com/codegangsta/envy v0.0.0-20141216192214-4b78388c8ce4/go.mod h1:X7wHz0C25Lga6CnJ4WAQNbUQ9P/8eWSNv8qIO71YkSM=
 github.com/codegangsta/gin v0.0.0-20171026143024-cafe2ce98974 h1:ysuVNDVE4LIky6I+6JlgAKG+wBNKMpVv3m3neVpvFVw=

@@ -7,7 +7,8 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/lestrrat-go/ical"
+    // "github.com/lestrrat-go/ical"
+    "github.com/PuloV/ics-golang"
 )
 
 func getCalendarFile(w http.ResponseWriter, r *http.Request) {
@@ -16,13 +17,12 @@ func getCalendarFile(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/calendar")
 	w.Header().Set("Content-Disposition", "inline; filename=\"event.ics\"")
 
-	c := ical.New()
-	c.AddProperty("X-Foo-Bar-Baz", "value")
-	tz := ical.NewTimezone()
-	tz.AddProperty("TZID", "Asia/Tokyo")
-	c.AddEntry(tz)
+    event := ics.NewEvent()
+    event.SetStart(time.Now())
 
-	ical.NewEncoder(os.Stdout).Encode(c)
+    // event :=ical.NewEvent();
+
+    NewEncoder(w).Encode(event)
 }
 
 func main() {
