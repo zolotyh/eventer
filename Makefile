@@ -2,4 +2,3 @@
 .PHONY: default
 default:
 	gin --appPort 8080
-

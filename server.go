@@ -1,33 +1,33 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"time"
 
 	"github.com/gorilla/mux"
-    // "github.com/lestrrat-go/ical"
-    "github.com/PuloV/ics-golang"
+	// "github.com/lestrrat-go/ical"
 )
 
-func getCalendarFile(w http.ResponseWriter, r *http.Request) {
-	log.Printf("%v: Recieved request for index\n", time.Now())
-
-	w.Header().Set("Content-Type", "text/calendar")
-	w.Header().Set("Content-Disposition", "inline; filename=\"event.ics\"")
-
-    event := ics.NewEvent()
-    event.SetStart(time.Now())
-
-    // event :=ical.NewEvent();
-
-    NewEncoder(w).Encode(event)
+type CalendarEvent struct {
+    Title string
+    Desc  string
 }
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/", getCalendarFile)
+
+	tmpl := template.Must(template.ParseFiles("template.ics"))
+
+	r.HandleFunc("/", func(writter http.ResponseWriter, request *http.Request) {
+        log.Printf("%v: Recieved request for index\n", time.Now())
+        // w.Header().Set("Content-Type", "text/calendar")
+        writter.Header().Set("Content-Disposition", "inline; filename=\"event.ics\"")
+        c :=CalendarEvent{Title: "title", Desc: "desc"}
+        tmpl.Execute(writter, c)
+	})
 
 	var port string
 
