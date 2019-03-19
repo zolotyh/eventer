@@ -6,9 +6,7 @@ import (
 	"net/http"
 	"os"
 	"time"
-
 	"github.com/gorilla/mux"
-	// "github.com/lestrrat-go/ical"
 )
 
 type CalendarEvent struct {
@@ -21,11 +19,28 @@ func main() {
 
 	tmpl := template.Must(template.ParseFiles("template.ics"))
 
-	r.HandleFunc("/", func(writter http.ResponseWriter, request *http.Request) {
+	r.HandleFunc("/api", func(writter http.ResponseWriter, request *http.Request) {
         log.Printf("%v: Recieved request for index\n", time.Now())
-        // w.Header().Set("Content-Type", "text/calendar")
+        // writter.Header().Set("Content-Type", "text/calendar")
         writter.Header().Set("Content-Disposition", "inline; filename=\"event.ics\"")
-        c :=CalendarEvent{Title: "title", Desc: "desc"}
+
+        description, descriptionOK := request.URL.Query()["description"]
+
+        if !descriptionOK || len(description[0]) < 1 {
+            log.Println("Url Param 'description' is missing")
+            return
+        }
+
+        title, titleOK := request.URL.Query()["description"]
+
+        if !titleOK || len(title[0]) < 1 {
+            log.Println("Url Param 'title' is missing")
+            return
+        }
+
+        c :=CalendarEvent{Title: title[0], Desc: description[0]}
+
+
         tmpl.Execute(writter, c)
 	})
 
