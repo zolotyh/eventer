@@ -19,7 +19,7 @@ type CalendarEvent struct {
 	StartDate string
 	EndDate   string
 	StartTime string
-	// EndTime   string
+	EndTime   string
 }
 
 func main() {
@@ -35,7 +35,7 @@ func main() {
 
 	tmpl := template.Must(template.New("event").Parse(templateRaw))
 
-	r.HandleFunc("/api", func(writter http.ResponseWriter, request *http.Request) {
+	r.HandleFunc("/", func(writter http.ResponseWriter, request *http.Request) {
 		log.Printf("%v: Recieved request for index\n", time.Now())
 
 		description, descriptionOK := request.URL.Query()["description"]
@@ -61,7 +61,7 @@ func main() {
 			panic(err)
 		}
 
-		writter.Header().Set("Content-Type", "text/calendar")
+		// writter.Header().Set("Content-Type", "text/calendar")
 		writter.Header().Set("Content-Disposition", "inline; filename=\"event.ics\"")
 		buf.WriteTo(writter)
 	})
