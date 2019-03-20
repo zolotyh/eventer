@@ -3,7 +3,9 @@ services:
   goservice:
     build: "."
     ports:
-      - "8080"
+      - "3000"
+    volumes:
+      - ${SERVICE_APP_PATH}:${SERICE_DESTINATION_PATH}
   nginx:
     build: "./nginx"
     ports:
@@ -14,6 +16,12 @@ services:
       - ${WEB_APP_PATH}:${WEB_DESTINATION_PATH}
 
 volumes:
+  service_app:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/${SERVICE_APP_PATH}
+      o: bind
   web_app:
     driver: local
     driver_opts:
