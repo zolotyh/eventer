@@ -13,13 +13,21 @@ import (
 )
 
 type CalendarEvent struct {
-	Title     string
-	Desc      string
-	TZID      string
-	StartDate string
-	EndDate   string
-	StartTime string
-	EndTime   string
+	Title         string
+	Desc          string
+	TZID          string
+	StartDateTime string
+	EndDateTime   string
+}
+
+func parseValuesFromRequest(request *http.Request) CalendarEvent {
+	return CalendarEvent{
+		Title:         request.URL.Query()["title"][0],
+		Desc:          request.URL.Query()["desc"][0],
+		TZID:          request.URL.Query()["tzid"][0],
+		StartDateTime: request.URL.Query()["start-date-time"][0],
+		EndDateTime:   request.URL.Query()["end-date-time"][0],
+	}
 }
 
 func main() {
@@ -38,30 +46,15 @@ func main() {
 	r.HandleFunc("/", func(writter http.ResponseWriter, request *http.Request) {
 		log.Printf("%v: Recieved request for index\n", time.Now())
 
-		description, descriptionOK := request.URL.Query()["description"]
-
-		if !descriptionOK || len(description[0]) < 1 {
-			log.Println("Url Param 'description' is missing")
-			return
-		}
-
-		title, titleOK := request.URL.Query()["description"]
-
-		if !titleOK || len(title[0]) < 1 {
-			log.Println("Url Param 'title' is missing")
-			return
-		}
-
-		c := CalendarEvent{Title: title[0], Desc: description[0]}
+		event := parseValuesFromRequest(request)
 
 		buf := &bytes.Buffer{}
 
-		if err := tmpl.Execute(buf, c); err != nil {
+		if err := tmpl.Execute(buf, event); err != nil {
 			http.Error(writter, "Hey, Request was bad!", http.StatusBadRequest) // HTTP 400 status
 			panic(err)
 		}
 
-		// writter.Header().Set("Content-Type", "text/calendar")
 		writter.Header().Set("Content-Disposition", "inline; filename=\"event.ics\"")
 		buf.WriteTo(writter)
 	})

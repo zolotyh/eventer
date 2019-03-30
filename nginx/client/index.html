@@ -1,31 +1,39 @@
-<!DOCTYPE html>
+<!doctype HTML>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Eventer</title>
-        <link rel="stylesheet" href="style.css" media="all">
+        <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" media="all">
+        <script defer src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js
+        "></script>
     </head>
     <body>
         <a href="/">
             <img src="img/eventer.svg" alt="logo" alt="/">
         </a>
-        <form action="/api" type="get">
-            <label>
-                Event title
-                <input name="title" type="text" placeholder="date title...">
-            </label>
-            <label>
-                Event desc
-                <textarea name="description" cols="30" rows="10"></textarea>
-            </label>
-            <label>
-                Time
-                <input type="time" name="time" />
-            </label>
-            <label>
-                Date
-                <input name="date" type="date" />
-            </label>
+        <form action="/api" tye="get">
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="mdl-textfield__label"> Event title </label>
+                <input name="title" class="mdl-textfield__input" type="text" placeholder="date title...">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="mdl-textfield__label">
+                    Event desc
+                    <textarea class="mdl-textfield__input" name="description" cols="30" rows="10"></textarea>
+                </label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="mdl-textfield mdl-js-textfield">
+                    start date time
+                    <input name="start-date-time" type="date" class="mdl-textfield__input" />
+                </label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="mdl-textfield mdl-js-textfield">
+                    end date time
+                    <input name="end-date-time" type="date" class="mdl-textfield__input" />
+                </label>
+            </div>
             <select id="" name="tzid">
                 <option value="America/Rio_Branco">America/Rio_Branco</option>
                 <option value="Asia/Kabul">Asia/Kabul</option>
